@@ -1,4 +1,4 @@
-from flask import jsonify, Flask, request
+from flask import jsonify, Flask, request, flash
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -35,13 +35,22 @@ def obtener_persoanjes():
     return jsonify([personaje.to_dict() for personaje in personajes])
 
 # Ruta para agregar un usuario
-@app.route('/Personaje', methods=['POST'])
+@app.route('/crear_personaje', methods=['POST'])
 def agregar_persoanje():
     data = request.get_json()
-    nuevo_personaje = Personaje(nombre=data['nombre'], edad=data['edad'], clase=data['clase'])
-    db.session.add(nuevo_personaje)
-    db.session.commit()
-    return jsonify(nuevo_personaje.to_dict()), 201
+    error = None
+    if not data['nombre'] or not data['edad'] or not data['clase']:
+        error = 'Se necesitan todos los parametros'
+        
+    if error is not None:
+        flash(error)
+    else:
+        nuevo_personaje = Personaje(nombre=data['nombre'], edad=data['edad'], clase=data['clase'])
+        db.session.add(nuevo_personaje)
+        db.session.commit()
+        return jsonify(nuevo_personaje.to_dict()), 201
+    return jsonify({"error": error}), 400
+        
 # Iniciar el servidor
 if __name__ == '__main__':
     app.run(debug=True)
