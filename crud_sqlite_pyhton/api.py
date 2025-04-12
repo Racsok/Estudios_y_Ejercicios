@@ -1,7 +1,6 @@
 from flask import jsonify, Flask, request, flash
 from flask_sqlalchemy import SQLAlchemy
 
-
 def create_app(environmet="dev"):
     app = Flask(__name__)
     return app
@@ -33,6 +32,15 @@ class Personaje(db.Model):
 def obtener_persoanjes():
     personajes = Personaje.query.all()
     return jsonify([personaje.to_dict() for personaje in personajes])
+
+# Ruta para obtener un solo personaje por id
+@app.route('/personaje/<int:personaje_id>', methods=['GET'])
+def buscar_personaje(personaje_id):
+    id = personaje_id 
+    print(id)
+    personaje = Personaje.query.get(id)
+    return jsonify([personaje.to_dict()])
+
 
 # Ruta para agregar un usuario
 @app.route('/crear_personaje', methods=['POST'])
