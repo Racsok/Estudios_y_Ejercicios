@@ -33,11 +33,11 @@ def obtener_persoanjes():
     personajes = Personaje.query.all()
     return jsonify([personaje.to_dict() for personaje in personajes])
 
+
 # Ruta para obtener un solo personaje por id
 @app.route('/personaje/<int:personaje_id>', methods=['GET'])
 def buscar_personaje(personaje_id):
     id = personaje_id 
-    print(id)
     personaje = Personaje.query.get(id)
     return jsonify([personaje.to_dict()])
 
@@ -48,7 +48,7 @@ def agregar_persoanje():
     data = request.get_json()
     error = None
     if not data['nombre'] or not data['edad'] or not data['clase']:
-        error = 'Se necesitan todos los parametros'
+        error = 'Se necesitan todos los parametros para crear'
         
     if error is not None:
         flash(error)
@@ -58,6 +58,41 @@ def agregar_persoanje():
         db.session.commit()
         return jsonify(nuevo_personaje.to_dict()), 201
     return jsonify({"error": error}), 400
+
+# Ruta para cambiar todo el personaje
+@app.route('/cambiar/<personaje_id>', methods=['PUT'])
+def cambiar_personaje(personaje_id):
+    id = personaje_id
+    personaje = Personaje.query.get(id)
+    data = request.get_json()
+    error = None
+    if not data['nombre'] or not data['edad'] or not data['clase']:
+        error = 'Se necesitan todos los parametros para actualizar'
+        
+    if error is not None:
+        flash(error)
+    else:
+        personaje.nombre = data['nombre']
+        personaje.edad = data['edad']
+        personaje.clase = data['clase']
+        db.session.commit()
+        return jsonify(personaje.to_dict()), 200
+    return jsonify({"error": error}), 400
+
+# Ruta para cambiar atributos al personaje
+@app.route('/actualizar/<int:personaje_id>', methods=['PATCH'])
+def actualizar_personaje(personaje_id):
+    id = personaje_id
+    personaje = Personaje.query.get(id)
+    data = request.get_json()
+    
+    for atributo, valor in data.items():
+        if hasattr(personaje, atributo):
+            setattr(personaje, atributo, valor)
+            
+    db.session.commit()
+    return jsonify(personaje.to_dict()), 200
+    
         
 # Iniciar el servidor
 if __name__ == '__main__':
