@@ -5,7 +5,7 @@
 ## Indice
 * [Descripción del proyecto](#descripción-del-proyecto)
 
-* [Funcionalidades del proyecto](#duncionalidades-del-proyecto)
+* [Funcionalidades del proyecto](#funcionalidades-del-proyecto)
 
 * [Tecnologias utilizadas](#tecnologias-utilizadas)
 
