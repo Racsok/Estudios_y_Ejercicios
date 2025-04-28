@@ -94,7 +94,15 @@ def actualizar_personaje(personaje_id):
             
     db.session.commit()
     return jsonify(personaje.to_dict()), 200
-    
+
+#Ruta para eliminar un personaje
+@app.route('/delete/<int:personaje_id>', methods=['DELETE'])
+def borrar_persoanje(personaje_id):
+    id = personaje_id
+    personaje = Personaje.query.get(id)
+    db.session.delete(persoanje)
+    db.session.commit()
+    return jsonify(personaje.to_dict()), 200
         
 # Iniciar el servidor
 if __name__ == '__main__':

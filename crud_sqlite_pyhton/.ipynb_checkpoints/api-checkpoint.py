@@ -59,6 +59,7 @@ def agregar_persoanje():
         return jsonify(nuevo_personaje.to_dict()), 201
     return jsonify({"error": error}), 400
 
+
 # Ruta para cambiar todo el personaje
 @app.route('/cambiar/<personaje_id>', methods=['PUT'])
 def cambiar_personaje(personaje_id):
@@ -79,6 +80,7 @@ def cambiar_personaje(personaje_id):
         return jsonify(personaje.to_dict()), 200
     return jsonify({"error": error}), 400
 
+
 # Ruta para cambiar atributos al personaje
 @app.route('/actualizar/<int:personaje_id>', methods=['PATCH'])
 def actualizar_personaje(personaje_id):
@@ -92,7 +94,15 @@ def actualizar_personaje(personaje_id):
             
     db.session.commit()
     return jsonify(personaje.to_dict()), 200
-    
+
+#Ruta para eliminar un personaje
+@app.route('/delete/<int:personaje_id>', methods=['DELETE'])
+def borrar_persoanje(personaje_id):
+    id = personaje_id
+    personaje = Personaje.query.get(id)
+    db.session.delete(persoanje)
+    db.session.commit()
+    return jsonify(personaje.to_dict()), 200
         
 # Iniciar el servidor
 if __name__ == '__main__':

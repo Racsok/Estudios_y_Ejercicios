@@ -34,6 +34,8 @@ de datos SQLite
 
 `actualizar_personaje(personaje_id)`: Ruta para cambiar atributos al personaje
 
+`borrar_persoanje(personaje_id)`: #Ruta para eliminar un personaje por id
+
 ## Tecnologias utilizadas
 
 * Flask
