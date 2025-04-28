@@ -5,7 +5,7 @@
 ## Indice
 * [Descripción del proyecto](#descripción-del-proyecto)
 
-* [Funcionalidades del proyecto](#duncionalidades-del-proyecto)
+* [Funcionalidades del proyecto](#funcionalidades-del-proyecto)
 
 * [Tecnologias utilizadas](#tecnologias-utilizadas)
 
@@ -33,6 +33,8 @@ de datos SQLite
 `cambiar_personaje(personaje_id)`: Ruta para cambiar todo el personaje
 
 `actualizar_personaje(personaje_id)`: Ruta para cambiar atributos al personaje
+
+`borrar_persoanje(personaje_id)`: #Ruta para eliminar un personaje por id
 
 ## Tecnologias utilizadas
 
