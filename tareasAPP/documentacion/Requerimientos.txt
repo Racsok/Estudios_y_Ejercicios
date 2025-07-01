@@ -1,0 +1,9 @@
+# Requeriemintos funcionales
+
+crear boton de tareas con la atrea a realizar
+organizar la tarea por prioridad
+colocar notas de la tarea como ultimo cosa echa o avance
+completar las tareas y que quede guardadas como tareas echas
+eliminar tareas de la cola de tareas
+ver todas las tareas en lista y organizadas
+
