@@ -19,11 +19,6 @@ class Ventana(tk.Tk):
         ttk.Button(frame_menu, text="Tareas Completadas").grid(column=1, row=0)
         ttk.Button(frame_menu, text="Crear Tarea", command=self.crear_tarea).grid(column=0,row=1, columnspan=2, sticky="ew")
 
-        # canvas y Scrol para las Tarea
-        # tareas = Canvas(self)
-        # scrollbar = tk.Scrollbar(frame_principal, orient="vertical", command=tareas.yview)
-        # self.tareas_scroll = ttk.Frame(tareas)
-
         #Contenedor Tareas
         self.contenedor_tareas = ttk.Frame(self, padding=10)
         self.contenedor_tareas.pack(fill="both", expand= True)

@@ -1,6 +1,6 @@
 # Interfaz para crear tarea
 import tkinter as tk
-from tkinter import Toplevel, ttk
+from tkinter import ttk
 from tkcalendar import DateEntry
 
 class VistaCrearTarea(tk.Toplevel):

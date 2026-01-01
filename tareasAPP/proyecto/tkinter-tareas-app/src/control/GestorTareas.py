@@ -12,4 +12,10 @@ class GestorTareas:
         print("Tarea creada con exito")
 
     def listar_tareas(self):
+        self.ordenar_tareas()
         return self.tareas_pendientes
+
+    def ordenar_tareas(self):
+        self.tareas_pendientes.sort(key=lambda Tarea: Tarea.prioridad)
+        for Tarea in self.tareas_pendientes:
+            print(f"{Tarea.titulo} : {Tarea.prioridad}")
