@@ -1,2 +1,2 @@
-tkinter
-sqlite3
+babel==2.17.0
+tkcalendar==1.6.1

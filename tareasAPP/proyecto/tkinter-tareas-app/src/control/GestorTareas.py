@@ -12,5 +12,4 @@ class GestorTareas:
         print("Tarea creada con exito")
 
     def listar_tareas(self):
-        for Tarea in self.tareas_pendientes:
-            print(Tarea)
+        return self.tareas_pendientes
