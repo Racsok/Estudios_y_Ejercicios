@@ -43,7 +43,7 @@ class VistaCrearTarea(tk.Toplevel):
             self.data = {
                     "titulo":  self.titulo.get(),
                     "descripcion": self.descripcion.get(),
-                    "prioridad": self.prioridad.get(),
+                    "prioridad": self.mapa_prioridad[f"{self.prioridad.get()}"],
                     "ent_fecha":  self.ent_fecha.get_date(), 
                     }
             self.destroy()
