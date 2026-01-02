@@ -46,11 +46,16 @@ class Ventana(tk.Tk):
         ventana_tarea.update_idletasks() # pide esperar a que termine de cargar la ventana
         ventana_tarea.grab_set()
         self.wait_window(ventana_tarea)
-        eliminar = False
-        if ventana_tarea.data != None :
-            tarea = ventana_tarea.data
-            eliminar = self.control.eliminar_tarea(tarea)
-        if eliminar:
+        cambio = False
+        if ventana_tarea.data != None and ventana_tarea.data.get("evento") == "eliminar":
+            tarea = ventana_tarea.data.get("tarea")
+            cambio = self.control.eliminar_tarea(tarea)
+        
+        if ventana_tarea.data != None and ventana_tarea.data.get("evento") == "actualizar":
+            data = ventana_tarea.data
+            cambio = self.control.actualizar_tarea(data.get("tarea"), data.get("titulo"), data.get("descripcion"), data.get("prioridad"), data.get("ent_fecha"))
+
+        if cambio:
             self.mostrar_tareas()
         
     def mostrar_tareas(self):
@@ -65,7 +70,6 @@ class Ventana(tk.Tk):
             # Creamos la tarjeta
             tarjeta = tk.Frame(self.contenedor_tareas, bg="white", highlightbackground="#e0e0e0", highlightthickness=1, bd=0, padx=15, pady=15)
             tarjeta.grid(row=i // 2, column=i % 2, padx=10, pady=10, sticky="nsew")
-            color = tarjeta.cget("bg")
             
             # Dentro de la tarjeta
             tk.Label(tarjeta, text=Tarea.titulo.upper(), font=("Arial", 9, "bold"), bg="white", fg="#333333").pack(anchor="w")

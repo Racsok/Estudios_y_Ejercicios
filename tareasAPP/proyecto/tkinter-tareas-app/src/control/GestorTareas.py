@@ -23,4 +23,14 @@ class GestorTareas:
             self.tareas_pendientes.remove(Tarea)
             return True
         return False
+    
+    def actualizar_tarea(self, Tarea, titulo, descripcion, prioridad, fecha):
+        # for tarea in self.tareas_pendientes:
+        #     if tarea == Tarea:
+        Tarea.titulo = titulo
+        Tarea.descripcion = descripcion
+        Tarea.prioridad = prioridad
+        Tarea.fecha_limite = fecha
+        return True
+        #     pass
 
