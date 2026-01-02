@@ -1,7 +1,6 @@
 # definicion de la clase tarea
 from datetime import datetime as dt
 
-
 class Tarea:
     def __init__(self, titulo, descripcion, prioridad, fecha_limite) -> None:
         self.titulo = titulo
