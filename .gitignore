@@ -1,0 +1,14 @@
+# Ignora cualquier carpeta llamada .venv en cualquier nivel de profundidad
+**/.venv/
+**/venv/
+
+# Ignora archivos de entorno de Python
+**/*.pyc
+**/__pycache__/
+
+# Si usas Node.js en algunos proyectos
+**/node_modules/
+
+# Archivos de configuración de editores
+.vscode/
+.idea/
