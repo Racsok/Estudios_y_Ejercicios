@@ -46,6 +46,12 @@ class Ventana(tk.Tk):
         ventana_tarea.update_idletasks() # pide esperar a que termine de cargar la ventana
         ventana_tarea.grab_set()
         self.wait_window(ventana_tarea)
+        eliminar = False
+        if ventana_tarea.data != None :
+            tarea = ventana_tarea.data
+            eliminar = self.control.eliminar_tarea(tarea)
+        if eliminar:
+            self.mostrar_tareas()
         
     def mostrar_tareas(self):
         #limpiar widget contenedor

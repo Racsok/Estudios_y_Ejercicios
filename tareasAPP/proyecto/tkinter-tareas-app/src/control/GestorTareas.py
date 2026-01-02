@@ -17,3 +17,10 @@ class GestorTareas:
 
     def ordenar_tareas(self):
         self.tareas_pendientes.sort(key=lambda Tarea: Tarea.prioridad)
+
+    def eliminar_tarea(self, Tarea):
+        if Tarea in self.tareas_pendientes:
+            self.tareas_pendientes.remove(Tarea)
+            return True
+        return False
+
