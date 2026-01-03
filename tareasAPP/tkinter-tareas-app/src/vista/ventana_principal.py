@@ -55,9 +55,9 @@ class Ventana(tk.Tk):
             data = ventana_tarea.data
             cambio = self.control.actualizar_tarea(data.get("tarea"), data.get("titulo"), data.get("descripcion"), data.get("prioridad"), data.get("ent_fecha"))
 
-        if ventana_tarea.data != None and ventana_tarea.data.get("evento") == "completar":
+        if ventana_tarea.data != None and ventana_tarea.data.get("evento") == "alternar_estado":
             tarea = ventana_tarea.data.get("tarea")
-            cambio = self.control.completar_tarea(tarea)
+            cambio = self.control.alternar_estado_tarea(tarea)
              
         if cambio:
             self.mostrar_tareas()

@@ -99,7 +99,7 @@ class VistaTarea(tk.Toplevel):
     def completar(self):
         self.data = {
                 "tarea": self.tarea,
-                "evento": "completar"
+                "evento": "alternar_estado"
                 }
         self.destroy()
 
