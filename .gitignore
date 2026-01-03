@@ -12,3 +12,6 @@
 # Archivos de configuración de editores
 .vscode/
 .idea/
+
+# Bases de datos SQLite
+**/*.sqlite

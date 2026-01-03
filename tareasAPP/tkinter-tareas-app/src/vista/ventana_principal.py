@@ -21,8 +21,8 @@ class Ventana(tk.Tk):
         frame_menu.pack(fill="x")
 
         # Frame para botones
-        ttk.Button(frame_menu, text="Pendientes").grid(column=0, row=0, padx=5)
-        ttk.Button(frame_menu, text="Completadas").grid(column=1, row=0, padx=5)
+        ttk.Button(frame_menu, text="Pendientes", command=self.mostrar_tareas).grid(column=0, row=0, padx=5)
+        ttk.Button(frame_menu, text="Completadas", command=lambda :self.mostrar_tareas("completada")).grid(column=1, row=0, padx=5)
         ttk.Button(frame_menu, text="+ Nueva Tarea", command=self.crear_tarea).grid(column=2, row=0, padx=20)
 
         #Contenedor Tareas
@@ -55,16 +55,19 @@ class Ventana(tk.Tk):
             data = ventana_tarea.data
             cambio = self.control.actualizar_tarea(data.get("tarea"), data.get("titulo"), data.get("descripcion"), data.get("prioridad"), data.get("ent_fecha"))
 
+        if ventana_tarea.data != None and ventana_tarea.data.get("evento") == "alternar_estado":
+            tarea = ventana_tarea.data.get("tarea")
+            cambio = self.control.alternar_estado_tarea(tarea)
+             
         if cambio:
             self.mostrar_tareas()
         
-    def mostrar_tareas(self):
+    def mostrar_tareas(self, *args):
         #limpiar widget contenedor
         for widget in self.contenedor_tareas.winfo_children():
             widget.destroy()
-
         #lista actualizada de tareas
-        lista_tareas = self.control.listar_tareas()
+        lista_tareas = self.control.listar_tareas(args)
 
         for i, Tarea in enumerate(lista_tareas):
             # Creamos la tarjeta

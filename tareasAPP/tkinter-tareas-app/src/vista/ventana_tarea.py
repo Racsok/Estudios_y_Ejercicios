@@ -46,18 +46,31 @@ class VistaTarea(tk.Toplevel):
         # --- BOTONES DE ACCIÓN ---
         btn_frame = ttk.Frame(self)
         btn_frame.pack(fill="x", side="bottom", pady=10)
+        if not self.tarea.completada:
 
-        # Botón Eliminar (Rojo)
-        self.btn_eliminar = tk.Button(btn_frame, text="Eliminar", command=self.eliminar, bg="#ff4d4d", fg="white", relief="flat", padx=10, pady=5)
-        self.btn_eliminar.pack(side="left")
+            # Botón Eliminar (Rojo)
+            self.btn_eliminar = tk.Button(btn_frame, text="Eliminar", command=self.eliminar, bg="#ff4d4d", fg="white", relief="flat", padx=10, pady=5)
+            self.btn_eliminar.pack(side="left")
 
-        # Botón Cerrar (Gris)
-        self.btn_cerrar = tk.Button(btn_frame, text="Cerrar", command=self.destroy, relief="flat", padx=10, pady=5)
-        self.btn_cerrar.pack(side="right", padx=5)
+            # Botón Cerrar (Gris)
+            self.btn_cerrar = tk.Button(btn_frame, text="Cerrar", command=self.destroy, relief="flat", padx=10, pady=5)
+            self.btn_cerrar.pack(side="right", padx=5)
 
-        # Botón Actualizar (Azul/Principal)
-        self.btn_actualizar = tk.Button(btn_frame, text="Actualizar Tarea", command=self.actualizar, bg="#2196F3", fg="white", font=("Arial", 10, "bold"), relief="flat", padx=15, pady=5)
-        self.btn_actualizar.pack(side="right", padx=5)
+            # Botón Actualizar (Azul/Principal)
+            self.btn_actualizar = tk.Button(btn_frame, text="Actualizar Tarea", command=self.actualizar, bg="#2196F3", fg="white", font=("Arial", 10, "bold"), relief="flat", padx=15, pady=5)
+            self.btn_actualizar.pack(side="right", padx=5)
+            
+            # Botón Completar (Verde)
+            self.btn_completar = tk.Button(btn_frame, text="Completar Tarea", command=self.completar, bg="#4CAF50", fg="white", font=("Arial", 10, "bold"), relief="flat", padx=15, pady=5)
+            self.btn_completar.pack(side="right", padx=5)
+        else:
+            # Botón Cerrar (Gris)
+            self.btn_cerrar = tk.Button(btn_frame, text="Cerrar", command=self.destroy, relief="flat", padx=10, pady=5)
+            self.btn_cerrar.pack(side="right", padx=5)
+
+            # Botón Descompletar (Verde)
+            self.btn_completar = tk.Button(btn_frame, text="Descompletar Tarea", command=self.completar, bg="#4CAF50", fg="white", font=("Arial", 10, "bold"), relief="flat", padx=15, pady=5)
+            self.btn_completar.pack(side="right", padx=5)
 
 
     def eliminar(self):
@@ -82,4 +95,13 @@ class VistaTarea(tk.Toplevel):
                 self.destroy()
         finally:
             pass
+    
+    def completar(self):
+        self.data = {
+                "tarea": self.tarea,
+                "evento": "alternar_estado"
+                }
+        self.destroy()
+
+
 
